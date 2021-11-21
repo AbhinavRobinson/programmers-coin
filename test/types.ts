@@ -5,7 +5,7 @@ import type { ProgrammersCoin } from "../src/types/ProgrammersCoin";
 
 declare module "mocha" {
   export interface Context {
-    greeter: ProgrammersCoin;
+    pgc: ProgrammersCoin;
     loadFixture: <T>(fixture: Fixture<T>) => Promise<T>;
     signers: Signers;
   }
