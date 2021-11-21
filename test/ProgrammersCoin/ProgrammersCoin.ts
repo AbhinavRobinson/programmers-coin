@@ -9,14 +9,16 @@ import { shouldBehaveLikeProgrammersCoin } from "./ProgrammersCoin.behavior";
 describe("Unit tests", function () {
   before(async function () {
     this.signers = {} as Signers;
+    this.others = {};
 
     const signers: SignerWithAddress[] = await ethers.getSigners();
     this.signers.admin = signers[0];
+    this.others = signers.slice(1);
   });
 
   describe("ProgrammersCoin:Deploy", function () {
-    beforeEach(async function () {
-      const supply: string = "10000000000000000000000";
+    before(async function () {
+      const supply: string = "1".padEnd(23, "0");
       const pgcArtifact: Artifact = await artifacts.readArtifact("ProgrammersCoin");
       this.pgc = <ProgrammersCoin>await waffle.deployContract(this.signers.admin, pgcArtifact, [supply]);
     });
