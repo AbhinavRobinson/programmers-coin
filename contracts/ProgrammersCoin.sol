@@ -1,9 +1,14 @@
 pragma solidity >=0.8.4;
 
 // SPDX-License-Identifier: MIT
+// @title Programmers Coin : ERC20 Token Standard
+// @version 1.0
+// @author Abhinav Robinson
+// @notice This is a standard token implementation.
 
 import "hardhat/console.sol";
 
+// @notice ER20 Token Standard Interface for Programmers Coin
 interface ERC20 {
     function totalSupply() external view returns (uint256);
 
@@ -25,6 +30,7 @@ interface ERC20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
+// @notice Implementation of the Programmers Coin
 contract ProgrammersCoin is ERC20 {
     string public constant name = "Programmers Coin";
     string public constant symbol = "PGC";
@@ -35,9 +41,10 @@ contract ProgrammersCoin is ERC20 {
 
     uint256 public totalSupply_;
 
-    constructor() {
-        totalSupply_ = 1000000000000000000000000000;
-        balances[msg.sender] = totalSupply_;
+    // @dev Initializes the contract with the initial supply
+    constructor(uint256 supply) {
+        totalSupply_ = supply;
+        balances[msg.sender] = supply;
     }
 
     function totalSupply() public view override returns (uint256) {
